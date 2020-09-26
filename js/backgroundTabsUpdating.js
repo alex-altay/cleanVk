@@ -7,6 +7,7 @@ const options = {
   histories: false,
   popularClips: false,
   recommendedFriends: false,
+  recommendedGroups: false,
   groupsReposts: false,
   likesCounter: false,
 };

@@ -4,7 +4,7 @@
   "short_name": "CleanVk",
   "description": "Выбирай сам, что удалить в ленте Вконтакте: рекламу, репосты, блоки с историями и предложениями друзей, лайки и другое",
   "permissions": [ "tabs", "webRequest", "https://*.vk.com/*", "storage"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "background": {
       "scripts": ["js/backgroundTabsUpdating.js"]
    },
