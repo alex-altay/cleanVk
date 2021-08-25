@@ -8,6 +8,7 @@ const options = {
   popularClips: false,
   recommendedFriends: false,
   recommendedGroups: false,
+  recommendedMessenger: false,
   groupsReposts: false,
   likesCounter: false,
 };
