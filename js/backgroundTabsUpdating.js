@@ -9,6 +9,7 @@ const options = {
   recommendedFriends: false,
   recommendedGroups: false,
   recommendedMessenger: false,
+  recommendedNarratives: false,
   groupsReposts: false,
   likesCounter: false,
 };
