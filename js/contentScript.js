@@ -8,7 +8,7 @@ const singleSelectors = {
   recommendedFriends: '.feed_friends_recomm',
   recommendedMessenger: '.ConvoRecommendList',
   groupsReposts: '#public_wall .post_copy, #group_wall .post_copy',
-  likesCounter: '.like_button_count',
+  likesCounter: '.like_button_count, ._like_button_count',
 };
 
 const wrappedSelectors = {
