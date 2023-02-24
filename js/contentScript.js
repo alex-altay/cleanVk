@@ -12,7 +12,7 @@ const singleSelectors = {
 
 const wrappedSelectors = {
   feedAds: { selector: '._ads_block_data_w', wrapper: '.feed_row' },
-  groupsAds: { selector: '.wall_marked_as_ads, ._ads_promoted_post_data_w', wrapper: '.post' },
+  groupsAds: { selector: '.wall_marked_as_ads, ._ads_promoted_post_data_w, a.PostHeaderSubtitle__item', wrapper: '.post' },
   recommendedGroups: { selector: '.feed_groups_recomm', wrapper: '.feed_row' },
   recommendedNarratives: { selector: '.RecommendedNarrativesBlock', wrapper: '.feed_row' },
   recommendedVideos: { selector: '.FeedVideosForYou', wrapper: '.feed_row' },
