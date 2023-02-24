@@ -19,14 +19,18 @@ const wrappedSelectors = {
   feedReposts: { selector: '.post_copy', wrapper: '.feed_row' },
 };
 
-function getNodes(filter) {
-  let single = [];
-  const wrapped = [];
+const conditionSelectors = {
+  groupsAds: { selector: 'span.PostHeaderSubtitle__item', wrapper: '.post', text: 'Реклама в сообществе' },
+};
+
+function getSingleSelectorNodes(filter) {
   const singleSelector = singleSelectors[filter];
+  return singleSelector ? document.querySelectorAll(singleSelector) : [];
+}
+
+function getWrappedSelectorNodes(filter) {
+  const wrapped = [];
   const wrappedSelector = wrappedSelectors[filter];
-  if (singleSelector) {
-    single = document.querySelectorAll(singleSelector);
-  }
   if (wrappedSelector) {
     const unwrapped = document.querySelectorAll(wrappedSelector.selector);
     unwrapped.forEach((element) => {
@@ -36,7 +40,31 @@ function getNodes(filter) {
       }
     });
   }
-  return [...single, ...wrapped];
+  return wrapped;
+}
+
+function getConditionSelectorNodes(filter) {
+  const condition = [];
+  const conditionSelector = conditionSelectors[filter];
+  if (conditionSelector) {
+    const unwrapped = document.querySelectorAll(conditionSelector.selector);
+    unwrapped.forEach((element) => {
+      if (element.innerText === conditionSelector.text) {
+        const garbage = element.closest(conditionSelector.wrapper);
+        if (garbage) {
+          condition.push(garbage);
+        }
+      }
+    });
+  }
+  return condition;
+}
+
+function getNodes(filter) {
+  const single = getSingleSelectorNodes(filter);
+  const wrapped = getWrappedSelectorNodes(filter);
+  const condition = getConditionSelectorNodes(filter);
+  return [...single, ...wrapped, ...condition];
 }
 
 function clean() {
