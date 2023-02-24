@@ -5,7 +5,7 @@ const singleSelectors = {
   sidebarAds: '#side_bar #ads_left, .apps_feedRightAppsBlock',
   histories: '#stories_feed_wrap',
   popularClips: '.ShortVideoFeedBlock',
-  recommendedFriends: '.feed_friends_recomm',
+  recommendedFriends: '.feed_friends_recomm, .FriendsSuggestionsBlock',
   groupsReposts: '#public_wall .post_copy, #group_wall .post_copy',
   likesCounter: '.like_button_count, ._like_button_count',
 };
