@@ -12,7 +12,7 @@ const singleSelectors = {
 
 const wrappedSelectors = {
   feedAds: { selector: '._ads_block_data_w', wrapper: '.feed_row' },
-  groupsAds: { selector: '.wall_marked_as_ads, ._ads_promoted_post_data_w, a.PostHeaderSubtitle__item', wrapper: '.post' },
+  groupsAds: { selector: '.wall_marked_as_ads, ._ads_promoted_post_data_w', wrapper: '.post' },
   recommendedGroups: { selector: '.feed_groups_recomm', wrapper: '.feed_row' },
   recommendedNarratives: { selector: '.RecommendedNarrativesBlock', wrapper: '.feed_row' },
   recommendedVideos: { selector: '.FeedVideosForYou', wrapper: '.feed_row' },
@@ -20,7 +20,10 @@ const wrappedSelectors = {
 };
 
 const conditionSelectors = {
-  groupsAds: { selector: 'span.PostHeaderSubtitle__item', wrapper: '.post', text: 'Реклама в сообществе' },
+  groupsAds: [
+    { selector: 'span.PostHeaderSubtitle__item', wrapper: '.post', text: 'Реклама в сообществе' },
+    { selector: 'a.PostHeaderSubtitle__item', wrapper: '.post', text: 'away.php' },
+  ],
 };
 
 function getSingleSelectorNodes(filter) {
@@ -43,20 +46,30 @@ function getWrappedSelectorNodes(filter) {
   return wrapped;
 }
 
-function getConditionSelectorNodes(filter) {
-  const condition = [];
-  const conditionSelector = conditionSelectors[filter];
-  if (conditionSelector) {
-    const unwrapped = document.querySelectorAll(conditionSelector.selector);
-    unwrapped.forEach((element) => {
-      if (element.innerText === conditionSelector.text) {
-        const garbage = element.closest(conditionSelector.wrapper);
-        if (garbage) {
-          condition.push(garbage);
-        }
+function handleConditionSelector(conditionSelector) {
+  const { selector, wrapper, text } = conditionSelector;
+  const garbageElements = [];
+
+  const elements = document.querySelectorAll(selector);
+  elements.forEach((element) => {
+    if (element.innerText === text || (element.href && element.href.indexOf(text) !== -1)) {
+      const garbage = element.closest(wrapper);
+      if (garbage) {
+        garbageElements.push(garbage);
       }
-    });
-  }
+    }
+  });
+
+  return garbageElements;
+}
+
+function getConditionSelectorNodes(filter) {
+  let condition = [];
+  const selectors = conditionSelectors[filter] || [];
+  selectors.forEach((conditionSelector) => {
+    const garbageElements = handleConditionSelector(conditionSelector);
+    condition = [...condition, ...garbageElements];
+  });
   return condition;
 }
 
