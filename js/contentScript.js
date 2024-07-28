@@ -3,7 +3,7 @@ const singleSelectors = {
   feedAds: '._ads_block_data_w',
   groupsAds: '.ads_ads_news_wrap, ._ads_promoted_post',
   sidebarAds: '#side_bar #ads_left, .apps_feedRightAppsBlock',
-  histories: '#stories_feed_wrap',
+  histories: '.stories_feed_wrap',
   popularClips: '.ShortVideoFeedBlock',
   recommendedFriends: '.feed_friends_recomm, .FriendsSuggestionsBlock, [class^=FriendsRecommendationsBlock]',
   groupsReposts: '#public_wall .post_copy, #group_wall .post_copy',
