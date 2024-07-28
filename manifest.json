@@ -10,7 +10,7 @@
   ],
   "version": "2.0.0",
   "background": {
-    "scripts": ["js/serviceWorker.js"]
+    "service_worker": "js/serviceWorker.js"
   },
   "content_scripts": [
     {
@@ -47,11 +47,5 @@
   "content_security_policy": {},
   "host_permissions": [
     "https://*.vk.com/*"
-  ],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "@cleanVk",
-      "strict_min_version": "109.0"
-    }
-  }
+  ]
 }
