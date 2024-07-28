@@ -15,7 +15,7 @@ const options = {
 };
 
 chrome.storage.sync.get('hasBeenBefore', (data) => {
-  if (!data.hasBeenBefore) {
+  if (!data || !data.hasBeenBefore) {
     chrome.storage.sync.set({
       hasBeenBefore: true,
       options,

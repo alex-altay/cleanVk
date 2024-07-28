@@ -1,22 +1,39 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Вконтакте без мусора",
   "short_name": "CleanVk",
-  "description": "Выбирай сам, что удалить в ленте Вконтакте: рекламу, репосты, блоки с историями и предложениями друзей, лайки и другое",
-  "permissions": ["tabs", "webRequest", "https://*.vk.com/*", "storage"],
-  "version": "1.0.8",
+  "description": "Выбирай сам, что удалить в ленте Вконтакте: рекламу, репосты, блоки с историями и предложениями друзей, лайки и другое", 
+  "permissions": [
+    "tabs",
+    "webRequest",
+    "storage"
+  ],
+  "version": "2.0.0",
   "background": {
-    "scripts": ["js/backgroundTabsUpdating.js"]
+    "scripts": ["js/serviceWorker.js"]
   },
   "content_scripts": [
     {
-      "matches": ["*://*.vk.com/*"],
-      "css": ["css/content.css"],
-      "js": ["js/contentScript.js"],
+      "matches": [
+        "*://*.vk.com/*"
+      ],
+      "css": [
+        "css/content.css"
+      ],
+      "js": [
+        "js/contentScript.js"
+      ],
       "run_at": "document_end"
     }
   ],
-  "browser_action": {
+  "icons": {
+    "16": "images/icons/16.png",
+    "32": "images/icons/32.png",
+    "48": "images/icons/48.png",
+    "96": "images/icons/96.png",
+    "128": "images/icons/128.png"
+  },
+  "action": {
     "default_title": "Вконтакте без мусора",
     "default_popup": "popup.html",
     "default_icon": {
@@ -27,11 +44,14 @@
       "128": "images/icons/128.png"
     }
   },
-  "icons": {
-    "16": "images/icons/16.png",
-    "32": "images/icons/32.png",
-    "48": "images/icons/48.png",
-    "96": "images/icons/96.png",
-    "128": "images/icons/128.png"
+  "content_security_policy": {},
+  "host_permissions": [
+    "https://*.vk.com/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@cleanVk",
+      "strict_min_version": "109.0"
+    }
   }
 }
